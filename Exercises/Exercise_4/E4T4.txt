@@ -1,0 +1,16 @@
+Q: What additional architectural change can be made to reduce the internet-facing attack surface of the web application instance?
+A: First, we could add WAF layer to the most front internet facing component of the application. This will prevent any DDOS attack to the application.
+Second, we could use HTTPS instead of just HTTP for ALB component. Third, we could implement imutability concept for the web service instance such that
+it is completely unaccessible by ssh, password, etc and any changes means that there will be new instance being created and the old instance will be terminated.
+
+Q: Assuming the IAM permissions for the S3 bucket are still insecure, would creating VPC private endpoints for S3 prevent the unauthorized access to the secrets bucket?
+A: No, not really because the endpoints allows you to traffic any request from inside the VPC to the S3 without going out to the internet. The attack instance is still
+living in the VPC hence it doesn't necesarilly make it any secure. Although VPC endpoint could reduce the amount of data transfer and latency to the S3 but this isn't
+specifically improving the security.
+
+Q: Will applying default encryption setting to the s3 buckets encrypt the data that already exists?
+A: No, according to the following AWS docs https://aws.amazon.com/blogs/storage/encrypting-existing-amazon-s3-objects-with-the-aws-cli/#:~:text=Encryption%20helps%20you%20protect%20your,objects%20in%20the%20same%20bucket.
+encryption only happen to new objects instead of old objects.
+
+Q: The changes you made above were done through the console or CLI; describe the outcome if the original cloud formation templates are applied to this environment?
+A: It will go back to the initial state (using update operation) of what is specified by the cloudformation template hence security vulnerabilities will be back to exist.

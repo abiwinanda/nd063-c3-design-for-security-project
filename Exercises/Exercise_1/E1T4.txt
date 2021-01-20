@@ -1,0 +1,4 @@
+Just looking at the schematic (without looking at the configurations in details) we could see the following vulnerabilities:
+1. The web service instance is located in public subnet. It should be put in private subnet to prevent any direct connection to the instance from the internet.
+2. The security group WebAppSG is not restricted well enough such that is could only accepts connection from resources that need to connect to it. In this case
+it should only be allowed to accept http request from AppLoadBalancerSG (least privilege model).

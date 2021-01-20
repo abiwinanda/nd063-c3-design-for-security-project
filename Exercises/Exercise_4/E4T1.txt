@@ -1,0 +1,5 @@
+To prevent an SSH brute force attack from the internet we could:
+- First, put application server in private subnet to remove direct internet connection.
+- Second, limit the security group of the application server to only allow accepting request from the load balancer sercurity group.
+- Third, remove the SSH capacibility of the application instance. Even better, remove any log in allowance to the EC2 instance. This make 
+sure the instance is immutable and any changes to the instance will result in deploying new EC2 instance and then terminate the old one.

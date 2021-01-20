@@ -1,0 +1,8 @@
+From screenshot E2T2_securityhub_2.png you could see that there are vulnerabilities found for EC2 instance. This is due to the fact
+that the EC2 instance is public and can accept any traffic from the internet. To remediate this vulnerabilities we could:
+- Restrict the EC2 instance security group to only accept traffic from the load balancer that hosted the web service.
+- Put the instance in private subnet.
+
+If we check E2T2_inspector.png we could also see that there is an instance that is configured to allow password authentication over SSH.
+This isn't recommended and usually mark as misconfiguration hence we could:
+- Disable password authentication for the instance so no ssh session is allowed using a password.

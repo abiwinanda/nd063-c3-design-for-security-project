@@ -1,0 +1,19 @@
+Use case: Scan infrastructure as code templates
+Example tool: terrascan (https://github.com/accurics/terrascan)
+Example of compliance violation:
+- Creating resources in default VPC.
+- VPC flow logging is not enabled in all VPCs.
+- Publicly Accessible MQ Brokers
+- and a lot others which you could find in https://docs.accurics.com/projects/accurics-terrascan/en/latest/policies/aws/
+
+Use case: Scan AMI’s or containers for OS vulnerabilities
+Example tool: AWS inspector
+Example of complience violation:
+- An EC2 instance is not running using the latest (stable) version of OS.
+
+Use case: Scan an AWS environment for cloud configuration vulnerabilities.
+Example tool: AWS Config
+Example of compliance violation:
+- s3-bucket-server-side-encryption-enabled = an s3 bucket does not have server side encryption enabled.
+- s3-bucket-ssl-requests-only = an s3 bucket can be accessed with unencrypted http request.
+- alb-http-to-https-redirection-check = A load balancer is not redirecting http to https.
